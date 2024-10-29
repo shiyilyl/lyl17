@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="vue_lyl.js"></script>
+    <style>
+        div {
+            width: 250px;
+            margin: 30px auto;
+            bottom: 1px solid #ccc;
+            border-radius: 30px;
+        }
+        p {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <p>
+            <input type="text" placeholder="请输入一个数" v-model="guessed" > 
+        </p>
+        <p>{{result}}</p>       <!-- 方法绑定 -->
+    </div>
+    <script>
+        let vm = new Vue({
+            el: '#app',
+            data: {
+                guessed: '',
+            },
+            computed: {
+                result(){
+                    const key = 30; //猜中数据
+                    const value = parseInt(this.guessed);
+                    if (isNaN(value))
+                       return "请输入一个1-100之间的整数";
+                   if(value === key)
+                        return "恭喜你，猜对了";
+                    if(value > key)
+                        return "猜大了"; 
+                   if(value < key)
+                        return "猜小了"; 
+                }
+            }
+        })
+        console.log(vm.$data)
+    </script>
+</body>
+</html>
